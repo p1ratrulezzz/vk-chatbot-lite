@@ -1,0 +1,6 @@
+/backend/config/index.js
+/backend/config/accounts.js
+/logs
+node_modules
+deploy.sh
+npm-debug.log

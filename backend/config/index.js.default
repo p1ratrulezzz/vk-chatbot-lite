@@ -1,0 +1,65 @@
+'use strict';
+
+/**
+ * Module dependencies.
+ * @private
+ */
+const path = require('path');
+
+module.exports = {
+  /**
+   * Данные аккаунта Cleverbot, через который бот получает ответы.
+   * @type {String}
+   */
+  'cleverbot-username': 'USERNAME',
+  'cleverbot-password': 'PASSWORD',
+
+  /**
+   * Паттерн обращения к ботам по умолчанию.
+   * @type {RegExp}
+   */
+  'default-pattern': /^бот[\s,]/i,
+
+  /**
+   * Абсолютный путь к директории, в которой находятся
+   * обработчики событий для входящих сообщений.
+   * @type {String}
+   */
+  'events-path': path.resolve(__dirname, '../bot/events/'),
+
+  /**
+   * Интервал проверки заявок в друзья (в миллисекундах).
+   * @type {Number}
+   */
+  'friends-delay': 1000 * 60,
+
+  /**
+   * Интервал отправки сообщений (в миллисекундах).
+   * @type {Number}
+   */
+  'messages-delay': 1000,
+
+  /**
+   * Интервал обновления онлайн-статуса (в миллисекундах).
+   * @type {Number}
+   */
+  'status-delay': 5 * 60 * 1000,
+
+  /**
+   * ID приложения сообщества.
+   * @type {Number}
+   */
+  'vk-group-app-id': 00000000,
+
+  /**
+   * Секретный ключ приложения сообщества.
+   * @type {String}
+   */
+  'vk-group-app-secret': 'SECRET_KEY',
+
+  /**
+   * Порт, прослушиваемый сервером.
+   * @type {Number}
+   */
+  'www-port': 9009
+}

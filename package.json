@@ -1,0 +1,22 @@
+{
+  "name": "vk-chatbot-lite",
+  "version": "1.0.0",
+  "description": "VKontakte chat-bots (Lite)",
+  "private": true,
+  "author": "olnaz",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:olnaz/vk-chatbot-lite.git"
+  },
+  "scripts": {
+    "start": "LOG_LEVEL=error pm2 start ./backend/bootstrap/ecosystem.config.js",
+    "start:dev": "LOG_LEVEL=info pm2 start ./backend/bootstrap/ecosystem.config.js"
+  },
+  "dependencies": {
+    "ioredis": "^2.5.0",
+    "node-fetch": "^1.7.3",
+    "node-vkapi": "^3.0.1",
+    "pino": "^4.7.2",
+    "xml2js": "^0.4.17"
+  }
+}

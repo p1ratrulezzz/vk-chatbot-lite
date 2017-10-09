@@ -1,0 +1,13 @@
+
+  --------
+  | Keys |
+  --------
+
+    captcha:<bot_id>     #set     { <captcha_sid>, ... }
+
+
+  ------------
+  | Channels |
+  ------------
+
+    captcha:recognized:<bot_id>:<captcha_sid>     =>     <captcha_key>

@@ -1,0 +1,57 @@
+
+  ----------------------
+  | Формат ответов API |
+  ----------------------
+
+    Success:
+      {
+        ok           #boolean     Всегда "true"
+        response     #any
+      }
+
+    Error:
+      {
+        ok        #boolean     Всегда "false"
+        cause     #string      Описание ошибки
+      }
+
+
+  -------------
+  | Endpoints |
+  -------------
+
+    /api/captcha.getAll / GET
+    -------------------
+
+      Request parameters
+        None
+
+      Response body
+        [
+          BotCaptcha (./backend/bot/base/Bot/Captcha.js #getAll())
+          ...
+        ]
+
+
+    /api/captcha.image / GET
+    ------------------
+
+      Request parameters
+        sid     #number     Captcha Session ID
+
+      Response body
+        Image Binary Stream
+
+
+    /api/captcha.send / GET
+    -----------------
+
+      Request parameters
+        auth_key           #string     Ключ авторизации
+        captcha_bot_id     #number     ID бота
+        captcha_sid        #number     Captcha Session ID
+        captcha_key        #string     Разгаданный код
+        user_id            #number     ID пользователя
+
+      Response body
+        undefined

@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vk.com/dumbbot</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="style.min.css">
+  </head>
+  <body>
+    <div class="main-container">
+      <div class="main-header">
+        <b>Чат-боты</b>
+        <a href="https://vk.com/dumbbot" target="_blank">/dumbbot</a>
+      </div>
+      <div class="main-content">
+        <div class="captcha-container is-empty" id="captcha-container">
+          <span id="captcha-block" style="display: none;">
+            <div class="captcha-cell">
+              <img id="captcha-img">
+            </div>
+            <div class="captcha-cell" style="padding-left: 0px;">
+              <input type="text" placeholder="Код" id="captcha-input">
+            </div>
+            <div class="captcha-row">
+              <div class="captcha-send-button" id="captcha-send-button">Отправить</div>
+            </div>
+          </span>
+          <span id="captcha-empty-block">Нет активных капч<br><br>¯\_(ツ)_/¯</span>
+        </div>
+      </div>
+    </div>
+    <script async defer src="main.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,26 @@
+'use strict';
+
+/**
+ * Информация об аккаунтах ботов.
+ */
+
+module.exports = {
+  // Формат описания данных аккаунта:
+  //
+  // <bot_id>: {
+  //   pattern: RegExp, // Паттерн обращения к боту
+  //   auth:    {
+  //     login:    String, // Логин
+  //     password: String  // Пароль
+  //   }
+  // }
+  //
+  // Пример ниже.
+  00000000: {
+    pattern: /^(бот|bot)[\s,]/i,
+    auth: {
+      login:    'dumbbot@bot.com',
+      password: 'password123456'
+    }
+  }
+}
