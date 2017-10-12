@@ -51,7 +51,7 @@ async function handler (bot, message) {
 
       return reply;
     })
-    .catch(error => pino.error(error));
+    .catch(error => pino.error('Error getting answer from Cleverbot.', error));
 }
 
 module.exports = handler;
