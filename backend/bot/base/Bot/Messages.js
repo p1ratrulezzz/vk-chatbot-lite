@@ -157,6 +157,13 @@ function sendMessage (bot, messageObject) {
         if (error.code === 7) {
           return;
         }
+
+        // Скорее всего, пользователь внёс бота в ЧС, потому как
+        // код ошибки 902 говорит о том, что бот не может отправить
+        // сообщение в связи с настройками приватности.
+        if (error.code === 902) {
+          return;
+        }
       }
 
       pino.error('Bot id%d unable to send a message.', bot.id, error);
@@ -259,32 +266,31 @@ function makeALongPollRequest (bot, link = '') {
         return setTimeout(() => makeALongPollRequest(bot), 1500);
       }
 
-      return response;
+      return response.json()
+        .then(resJson => {
+          // Параметр "key" устарел, нужно запросить новые "key" и "ts".
+          if (resJson.failed && resJson.failed !== 1) {
+            return makeALongPollRequest(bot);
+          }
+
+          // Обновляем "ts" для следующего запроса.
+          link = link.replace(/ts=.*/, 'ts=' + resJson.ts);
+
+          // Обновлений нет.
+          if (!resJson.updates || !resJson.updates.length) {
+            return makeALongPollRequest(bot, link);
+          }
+
+          // Отправляем новый запрос.
+          makeALongPollRequest(bot, link);
+
+          // Обрабатываем полученные обновления.
+          processUpdates(bot.id, resJson.updates);
+
+          return;
+        });
     })
-    .then(response => response.json())
-    .then(response => {
-      // Параметр "key" устарел, нужно запросить новые "key" и "ts".
-      if (response.failed && response.failed !== 1) {
-        return makeALongPollRequest(bot);
-      }
-
-      // Обновляем "ts" для следующего запроса.
-      link = link.replace(/ts=.*/, 'ts=' + response.ts);
-
-      // Обновлений нет.
-      if (!response.updates || !response.updates.length) {
-        return makeALongPollRequest(bot, link);
-      }
-
-      // Отправляем новый запрос.
-      makeALongPollRequest(bot, link);
-
-      // Обрабатываем полученные обновления.
-      processUpdates(bot.id, response.updates);
-    })
-    .catch(error => {
-      return setTimeout(() => makeALongPollRequest(bot), 1500);
-    });
+    .catch(error => setTimeout(() => makeALongPollRequest(bot), 1500));
 }
 
 /**
