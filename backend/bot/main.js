@@ -21,7 +21,7 @@ authorize(Object.keys(accounts).map(botId => accounts[botId].auth))
       bots[token.botId] = new Bot(token, accounts[token.botId].pattern);
     }
   })
-  .catch(error => pino.error(error));
+  .catch(error => pino.error('App initialization error.', error));
 
 process.on('SIGINT', async () => {
   await require('../lib/redis').quit();
