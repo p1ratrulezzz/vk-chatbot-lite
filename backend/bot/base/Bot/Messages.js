@@ -67,12 +67,6 @@ function buildMessage (resultObject = {}, messageObject = {}) {
 
   const message = resultObject.message || '';
 
-  let attachments = resultObject.attachments || '';
-
-  if (attachments && Array.isArray(attachments)) {
-    attachments = attachments.join(',');
-  }
-
   let forwards = resultObject.forward_messages || '';
 
   if (forwards && Array.isArray(forwards)) {
@@ -90,14 +84,13 @@ function buildMessage (resultObject = {}, messageObject = {}) {
   }
 
   // Нечего отправлять.
-  if (!(message || attachments || forwards)) {
+  if (!message && !forwards) {
     return;
   }
 
   return {
     message,
     [conversationType]: conversationId,
-    attachment:         attachments,
     forward_messages:   forwards
   }
 }
