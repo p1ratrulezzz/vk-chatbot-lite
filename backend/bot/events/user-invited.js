@@ -32,7 +32,19 @@ async function handler (bot, message) {
         user_id: bot.id
       })
       .then(() => null)
-      .catch(error => pino.error(error));
+      .catch(error => {
+        if (error.name === 'VkApiError') {
+
+          // Нет доступа к чату. Значит, бот уже вышел из него.
+          if (error.code === 15) {
+            return;
+          }
+        }
+
+        pino.error('Bot id%d unable to leave a chat.', bot.id, error);
+
+        return;
+      });
   }
 
   return;
