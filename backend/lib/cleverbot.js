@@ -23,7 +23,7 @@ const REQUEST_URL = 'http://cleverbot.existor.com/webservicexml';
  */
 async function parseResponse (response) {
   if (!response || !response.length) {
-    throw new Error('"response" is empty.');
+    return;
   }
 
   return new Promise((resolve, reject) => {
@@ -46,7 +46,7 @@ async function parseResponse (response) {
  */
 async function send (messageText) {
   if (!messageText) {
-    throw new Error('"messageText" can not be empty.');
+    return;
   }
 
   return fetch(REQUEST_URL, {
