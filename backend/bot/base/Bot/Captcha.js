@@ -105,12 +105,12 @@ async function addAndWait (botId, captchaSid) {
         // Удаляем капчу из активных.
         remove(botId, captchaSid);
 
-        resolve(null);
-
         clearTimeout(waitingList[waitKey + '_timer']);
 
         waitingList[waitKey] = undefined;
         waitingList[waitKey + '_timer'] = undefined;
+
+        resolve(null);
       }
 
       waitKey = null;
