@@ -35,7 +35,7 @@ module.exports = {
       node_args: ['--harmony'],
       error_file: path.join(cwd, './logs/bot-error.log'),
       out_file:   path.join(cwd, './logs/bot-out.log'),
-      max_memory_restart: '250M'
+      max_memory_restart: '200M'
     }
   ]
 }
